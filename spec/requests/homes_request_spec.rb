@@ -7,10 +7,15 @@ describe "HomesController", type: :request do
   end
 
   it "renders if there is a user" do
-    user = User.create!(auth_hash: "123", name: "some name")
-    ApplicationController.any_instance.stub(:current_user).and_return(user)
+    sign_in
 
     get('/')
     expect(response.status).to eq(200)
+  end
+
+  def sign_in
+    user = User.create!(auth_hash: "123", name: "some name")
+    allow_any_instance_of(ApplicationController).
+      to receive(:current_user).and_return(user)
   end
 end
