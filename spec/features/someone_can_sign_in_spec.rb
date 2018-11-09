@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "user flow" do
+describe "user flow", js: true do
   it "someone can authenticate with google and create a chat room" do
     OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
       provider: 'google',

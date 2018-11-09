@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+
   root 'homes#show'
   get '/auth/:provider/callback', to: 'sessions#create'
 
